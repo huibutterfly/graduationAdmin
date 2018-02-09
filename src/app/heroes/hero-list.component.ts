@@ -18,8 +18,11 @@ import { HttpClient } from '@angular/common/http';
         </a>
       </li>
     </ul>
-
     <button routerLink="/sidekicks">Go to sidekicks</button>
+    <ul *ngFor="let item of lists">
+      <li>{{item.id}}</li>
+    <ul>
+  
   `
 })
 export class HeroListComponent implements OnInit {
@@ -27,7 +30,9 @@ export class HeroListComponent implements OnInit {
 
 
   private selectedId: number;
-  data: object;
+  private lists: object;
+  
+
 
   constructor(
     private service: HeroService,
@@ -36,7 +41,6 @@ export class HeroListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('111111');
     this.getData();
     this.heroes$ = this.route.paramMap
       .switchMap((params: ParamMap) => {
@@ -47,10 +51,23 @@ export class HeroListComponent implements OnInit {
   }
 
   getData(){
-    this.http.get('api/One/index').subscribe(data => {
+    interface ItemsResponse {
+      msg: string,
+      result: boolean,
+      data: One,
+      count: number
+    }
+    interface One {
+      FK_product_id: number,
+      price: number,
+      product_name: string
+    }
+    class HeroService {
+
+    }
+    this.http.get<ItemsResponse>('api/One/index').subscribe(res => {
       // Read the result field from the JSON response.
-      this.data = data;
-      console.log(data);
+      this.lists = res.data;
     });
   }
 }
