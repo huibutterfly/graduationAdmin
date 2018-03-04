@@ -51,6 +51,8 @@ export class HeroListComponent implements OnInit {
   }
 
   getData(){
+    const body = {};
+    
     interface ItemsResponse {
       msg: string,
       result: boolean,

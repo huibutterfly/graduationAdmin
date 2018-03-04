@@ -17,6 +17,8 @@ import { PageNotFoundComponent }   from './not-found.component';
 
 import { DialogService }           from './dialog.service';
 
+import {CKEditorModule} from 'ng2-ckeditor';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { DialogService }           from './dialog.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CKEditorModule
   ],
   declarations: [
     AppComponent,
